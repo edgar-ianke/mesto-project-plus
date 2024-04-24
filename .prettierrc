@@ -1,4 +1,11 @@
 {
-    "singleQuote": false,
-    "printWidth": 120
-  }
+  "singleQuote": true,
+  "printWidth": 120,
+  "tabWidth": 2,
+  "bracketSpacing": true,
+  "useTabs": false,
+  "endOfLine": "auto",
+  "jsxSingleQuote": true,
+  "trailingComma": "none",
+  "arrowFunctionParentheses": "avoid"
+}
