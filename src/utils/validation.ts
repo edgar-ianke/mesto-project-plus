@@ -10,7 +10,7 @@ export const postCardVal = celebrate({ body: Joi.object().keys({
 
 export const cardIdValidator = celebrate({
   params: Joi.object().keys({
-    cardId: Joi.string().alphanum().required,
+    cardId: Joi.string().length(24).hex().required(),
   }),
 });
 
@@ -31,7 +31,7 @@ export const loginVal = celebrate({ body: Joi.object().keys({
 
 export const userIdValidator = celebrate({
   params: Joi.object().keys({
-    userId: Joi.string().alphanum().required,
+    userId: Joi.string().length(24).hex().required(),
   }),
 });
 

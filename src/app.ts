@@ -11,13 +11,12 @@ import { createUser, login } from './contorllers/user';
 import auth from './middlewares/auth';
 import { requestLogger, errorLogger } from './middlewares/logger';
 import { createUserVal, loginVal } from './utils/validation';
-
-const { PORT = 3000 } = process.env;
+import { PORT, DB } from './utils/config';
 
 const app = express();
 app.use(cookieParser());
 
-mongoose.connect('mongodb://localhost:27017/mestodb');
+mongoose.connect(DB);
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

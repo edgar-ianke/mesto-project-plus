@@ -1,13 +1,14 @@
 import { NextFunction, Response } from 'express';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import { ERR_UNAUTHORIZED, ERR_UNAUTHORIZED_TEXT, SECRET_KEY } from '../utils/constants';
+import { ERR_UNAUTHORIZED, ERR_UNAUTHORIZED_TEXT } from '../utils/constants';
 import CustomError from '../utils/customError';
 import { SessionRequest } from '../utils/types';
+import { SECRET_KEY } from '../utils/config';
 
 export default (req: SessionRequest, res: Response, next: NextFunction) => {
   const tokenWithBearer = req.cookies.token;
   if (!tokenWithBearer || !tokenWithBearer.startsWith('Bearer ')) {
-    next(new CustomError(ERR_UNAUTHORIZED, `${ERR_UNAUTHORIZED_TEXT}!!!!`));
+    next(new CustomError(ERR_UNAUTHORIZED, ERR_UNAUTHORIZED_TEXT));
   } else {
     const token = tokenWithBearer.replace('Bearer ', '');
     let payload;

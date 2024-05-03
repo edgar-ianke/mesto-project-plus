@@ -3,7 +3,8 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import User from '../models/user';
 import CustomError from '../utils/customError';
-import { ERR_CONFLICT, ERR_CONFLICT_TEXT, ERR_INCORRECT_DATA, ERR_INCORRECT_DATA_TEXT, ERR_NOT_FOUND, ERR_NOT_FOUND_TEXT, SECRET_KEY } from '../utils/constants';
+import { ERR_CONFLICT, ERR_CONFLICT_TEXT, ERR_INCORRECT_DATA, ERR_INCORRECT_DATA_TEXT, ERR_NOT_FOUND, ERR_NOT_FOUND_TEXT } from '../utils/constants';
+import { SECRET_KEY } from '../utils/config';
 import { RequestWithUser } from '../utils/types';
 
 export const createUser = (req: Request, res: Response, next: NextFunction) => {
@@ -51,7 +52,7 @@ const getUserHandler = (id: string) => (req: Request, res: Response, next: NextF
     .catch((err) => {
       if (err.name === 'CastError') {
         res.send(err);
-        next(new CustomError(ERR_INCORRECT_DATA, `${ERR_INCORRECT_DATA_TEXT}!!!!`));
+        next(new CustomError(ERR_INCORRECT_DATA, ERR_INCORRECT_DATA_TEXT));
       } else if (err.name === 'DocumentNotFoundError') {
         next(new CustomError(ERR_NOT_FOUND, ERR_NOT_FOUND_TEXT));
       }
