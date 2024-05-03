@@ -30,7 +30,7 @@ const cardSchema = new mongoose.Schema<ICard>({
   },
   likes: [
     {
-      type: Schema.Types.ObjectId,
+      type: [Schema.Types.ObjectId],
       default: [],
       ref: 'user',
     },
